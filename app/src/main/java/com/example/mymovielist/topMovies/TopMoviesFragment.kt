@@ -6,19 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mymovielist.MovieListAdapter
 import com.example.mymovielist.databinding.FragmentTopMoviesBinding
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class TopMoviesFragment : Fragment() {
 
     private val viewModel: TopMoviesViewModel by viewModels()
 
+    @InternalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentTopMoviesBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -29,9 +34,11 @@ class TopMoviesFragment : Fragment() {
             adapter = movieListAdapter
         }
 
-        viewModel.topMovies.observe(viewLifecycleOwner, {
-            movieListAdapter.submitList(it)
-        })
+        lifecycleScope.launch {
+            viewModel.getTopMoviesFlow().collectLatest {
+                movieListAdapter.submitData(it)
+            }
+        }
 
         return binding.root
     }

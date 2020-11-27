@@ -2,14 +2,14 @@ package com.example.mymovielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mymovielist.api.NetworkMovie
 import com.example.mymovielist.databinding.MovieListItemBinding
 
-class MovieListAdapter : ListAdapter<NetworkMovie, MovieViewHolder>(MovieDiffCallback()) {
+class MovieListAdapter : PagingDataAdapter<NetworkMovie, MovieViewHolder>(MovieDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(
             MovieListItemBinding.inflate(
@@ -21,7 +21,10 @@ class MovieListAdapter : ListAdapter<NetworkMovie, MovieViewHolder>(MovieDiffCal
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val movieItem = getItem(position)
+        if (movieItem != null) {
+            holder.bind(movieItem)
+        }
     }
 
     class MovieDiffCallback : DiffUtil.ItemCallback<NetworkMovie>() {

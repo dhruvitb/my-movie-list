@@ -6,6 +6,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org/3/"
 
@@ -16,9 +17,9 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .build()
 
-interface TheMovieDbApiService {
+interface TheMovieDbService {
     @GET("movie/top_rated?api_key=${BuildConfig.API_KEY}")
-    suspend fun getTopMovies(): TopMoviesResponse
+    suspend fun getTopMovies(@Query("page") page: Int): TopMoviesResponse
 
     data class TopMoviesResponse(
         val page: Int,
@@ -27,5 +28,5 @@ interface TheMovieDbApiService {
 }
 
 object TheMovieDbApi {
-    val retrofitService: TheMovieDbApiService by lazy { retrofit.create(TheMovieDbApiService::class.java) }
+    val retrofitService: TheMovieDbService by lazy { retrofit.create(TheMovieDbService::class.java) }
 }
