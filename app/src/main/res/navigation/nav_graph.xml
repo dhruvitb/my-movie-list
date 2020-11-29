@@ -3,24 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/topMovies">
+    app:startDestination="@id/top_movies_fragment">
 
     <fragment
-        android:id="@+id/topMovies"
+        android:id="@+id/top_movies_fragment"
         android:name="com.example.mymovielist.topMovies.TopMoviesFragment"
         tools:layout="@layout/fragment_top_movies">
         <action
-            android:id="@+id/action_topMovies_to_movieDetail"
-            app:destination="@id/movieDetail" />
+            android:id="@+id/action_top_movies_fragment_to_movie_detail_fragment"
+            app:destination="@id/movie_detail_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/movieDetail"
+        android:id="@+id/movie_detail_fragment"
         android:name="com.example.mymovielist.movieDetail.MovieDetailFragment"
         tools:layout="@layout/fragment_movie_detail">
         <argument
             android:name="movie"
             app:argType="com.example.mymovielist.api.NetworkMovie" />
     </fragment>
+
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="com.example.mymovielist.search.SearchFragment"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/my_list_fragment"
+        android:name="com.example.mymovielist.myList.MyListFragment"
+        tools:layout="@layout/fragment_my_list" />
 
 </navigation>

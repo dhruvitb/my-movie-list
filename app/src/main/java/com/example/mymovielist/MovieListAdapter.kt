@@ -52,7 +52,7 @@ class MovieViewHolder(private val binding: MovieListItemBinding) :
             .into(imageView)
         binding.onClickListener = MovieListItemListener {
             itemView.findNavController().navigate(
-                TopMoviesFragmentDirections.actionTopMoviesToMovieDetail(movie)
+                TopMoviesFragmentDirections.actionTopMoviesFragmentToMovieDetailFragment(movie)
             )
         }
         binding.executePendingBindings()
