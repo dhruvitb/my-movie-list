@@ -25,8 +25,7 @@ class TopMoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentTopMoviesBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this
 
         val movieListAdapter = MovieListAdapter()
         binding.movieList.apply {
