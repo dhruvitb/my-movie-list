@@ -2,6 +2,7 @@ package com.example.mymovielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mymovielist.api.NetworkMovie
 import com.example.mymovielist.databinding.MovieListItemBinding
-import com.example.mymovielist.topMovies.TopMoviesFragmentDirections
 
 class MovieListAdapter : PagingDataAdapter<NetworkMovie, MovieViewHolder>(MovieDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -51,9 +51,8 @@ class MovieViewHolder(private val binding: MovieListItemBinding) :
             .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
             .into(imageView)
         binding.onClickListener = MovieListItemListener {
-            itemView.findNavController().navigate(
-                TopMoviesFragmentDirections.actionTopMoviesFragmentToMovieDetailFragment(movie)
-            )
+            itemView.findNavController()
+                .navigate(R.id.movie_detail_fragment, bundleOf("movie" to movie))
         }
         binding.executePendingBindings()
     }

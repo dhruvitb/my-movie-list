@@ -1,19 +1,18 @@
-package com.example.mymovielist.topMovies
+package com.example.mymovielist.search
 
 import androidx.paging.PagingSource
+import com.example.mymovielist.topMovies.THE_MOVIE_DB_MAX_PAGE
+import com.example.mymovielist.topMovies.THE_MOVIE_DB_MIN_PAGE
 import com.example.mymovielist.api.NetworkMovie
 import com.example.mymovielist.api.TheMovieDbApi
 import retrofit2.HttpException
 import java.io.IOException
 
-const val THE_MOVIE_DB_MIN_PAGE = 1
-const val THE_MOVIE_DB_MAX_PAGE = 1000
-
-class TopMoviesPagingSource : PagingSource<Int, NetworkMovie>() {
+class SearchMoviesPagingSource(private val query: String) : PagingSource<Int, NetworkMovie>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, NetworkMovie> {
         val index = params.key ?: THE_MOVIE_DB_MIN_PAGE
         return try {
-            val response = TheMovieDbApi.retrofitService.getTopMovies(index)
+            val response = TheMovieDbApi.retrofitService.searchMovies(query, index)
             val topMovies = response.results
             LoadResult.Page(
                 topMovies,
@@ -25,5 +24,6 @@ class TopMoviesPagingSource : PagingSource<Int, NetworkMovie>() {
         } catch (exception: HttpException) {
             return LoadResult.Error(exception)
         }
+
     }
 }
