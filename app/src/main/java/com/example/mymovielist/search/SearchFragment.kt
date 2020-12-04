@@ -54,6 +54,12 @@ class SearchFragment : Fragment() {
 
         binding.searchBar.setOnQueryTextListener(queryTextListener)
 
+        lifecycleScope.launch {
+            viewModel.currentSearchResult?.collectLatest {
+                listAdapter.submitData(it)
+            }
+        }
+
         return binding.root
     }
 }

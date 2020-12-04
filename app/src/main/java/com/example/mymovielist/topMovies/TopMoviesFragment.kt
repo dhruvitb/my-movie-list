@@ -34,7 +34,7 @@ class TopMoviesFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            viewModel.getTopMoviesFlow().collectLatest {
+            viewModel.topMoviesFlow.collectLatest {
                 movieListAdapter.submitData(it)
             }
         }
