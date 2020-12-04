@@ -18,7 +18,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface TheMovieDbService {
-    @GET("movie/top_rated?api_key=${BuildConfig.API_KEY}")
+    @GET("movie/popular?api_key=${BuildConfig.API_KEY}")
     suspend fun getTopMovies(@Query("page") page: Int): MoviesListResponse
 
     @GET("search/movie?api_key=${BuildConfig.API_KEY}")
