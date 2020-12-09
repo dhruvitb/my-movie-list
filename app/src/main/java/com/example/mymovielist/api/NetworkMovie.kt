@@ -1,6 +1,7 @@
 package com.example.mymovielist.api
 
 import android.os.Parcelable
+import com.example.mymovielist.database.DatabaseMovie
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
@@ -16,3 +17,15 @@ data class NetworkMovie(
     @Json(name = "vote_average")
     val rating: Double
 ) : Parcelable
+
+fun NetworkMovie.toDatabaseMovie(): DatabaseMovie {
+    return DatabaseMovie(
+        id = id,
+        title = title,
+        posterPath = posterPath,
+        overview = overview,
+        releaseDate = releaseDate,
+        myRating = null,
+        notes = null
+    )
+}
