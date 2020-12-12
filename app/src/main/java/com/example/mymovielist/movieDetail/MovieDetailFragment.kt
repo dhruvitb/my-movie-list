@@ -29,7 +29,7 @@ class MovieDetailFragment : Fragment() {
         }
         binding.apply {
             movieTitle.text = movie.title
-            Glide.with(moviePoster)
+            Glide.with(this@MovieDetailFragment)
                 .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                 .into(moviePoster)
             movieOverview.text = movie.overview

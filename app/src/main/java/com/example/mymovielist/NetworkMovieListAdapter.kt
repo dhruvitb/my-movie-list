@@ -46,15 +46,16 @@ class MovieViewHolder(private val binding: MovieListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movie: NetworkMovie) {
-        val imageView = binding.moviePoster
-        Glide.with(imageView.context)
-            .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-            .into(imageView)
-        binding.onClickListener = MovieListItemListener {
-            itemView.findNavController()
-                .navigate(R.id.movie_detail_fragment, bundleOf("movie" to movie))
+        binding.apply {
+            Glide.with(moviePoster)
+                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+                .into(moviePoster)
+            onClickListener = MovieListItemListener {
+                itemView.findNavController()
+                    .navigate(R.id.movie_detail_fragment, bundleOf("movie" to movie))
+            }
+            executePendingBindings()
         }
-        binding.executePendingBindings()
     }
 }
 

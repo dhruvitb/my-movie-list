@@ -29,14 +29,15 @@ class ViewHolder(private val binding: MyMoviesListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movie: DatabaseMovie) {
-        val imageView = binding.moviePoster
-        Glide.with(imageView)
-            .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-            .into(imageView)
-        binding.movieTitle.text = movie.title
-        binding.myRating.text = movie.myRating.toString()
-        binding.notes.text = movie.notes
-        binding.executePendingBindings()
+        binding.apply {
+            Glide.with(moviePoster)
+                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+                .into(moviePoster)
+            movieTitle.text = movie.title
+            myRating.text = movie.myRating.toString()
+            notes.text = movie.notes
+            executePendingBindings()
+        }
     }
 }
 
