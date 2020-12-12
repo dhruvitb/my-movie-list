@@ -9,11 +9,7 @@
     <fragment
         android:id="@+id/top_movies_fragment"
         android:name="com.example.mymovielist.topMovies.TopMoviesFragment"
-        tools:layout="@layout/fragment_top_movies">
-        <action
-            android:id="@+id/action_top_movies_fragment_to_movie_detail_fragment"
-            app:destination="@id/movie_detail_fragment" />
-    </fragment>
+        tools:layout="@layout/fragment_top_movies" />
 
     <fragment
         android:id="@+id/movie_detail_fragment"
