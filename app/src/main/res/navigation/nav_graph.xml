@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/top_movies_fragment">
 
+    <!-- TODO have this work with system back -->
     <fragment
         android:id="@+id/top_movies_fragment"
         android:name="com.example.mymovielist.topMovies.TopMoviesFragment"
