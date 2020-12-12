@@ -5,5 +5,5 @@
     <string name="rating">Rating: %s/10</string>
     <string name="search">Search</string>
     <string name="top_movies">Top Movies</string>
-    <string name="my_list">My List</string>
+    <string name="my_movies">My Movies</string>
 </resources>

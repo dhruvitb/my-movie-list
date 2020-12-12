@@ -29,8 +29,8 @@
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/my_list_fragment"
-        android:name="com.example.mymovielist.myList.MyListFragment"
-        tools:layout="@layout/fragment_my_list" />
+        android:id="@+id/my_movies_fragment"
+        android:name="com.example.mymovielist.myMovies.MyMoviesFragment"
+        tools:layout="@layout/fragment_my_movies" />
 
 </navigation>
