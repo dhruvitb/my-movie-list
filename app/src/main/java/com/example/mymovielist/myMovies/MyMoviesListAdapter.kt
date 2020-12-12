@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mymovielist.database.DatabaseMovie
 import com.example.mymovielist.databinding.MyMoviesListItemBinding
 
@@ -28,7 +29,13 @@ class ViewHolder(private val binding: MyMoviesListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movie: DatabaseMovie) {
+        val imageView = binding.moviePoster
+        Glide.with(imageView)
+            .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+            .into(imageView)
         binding.movieTitle.text = movie.title
+        binding.myRating.text = movie.myRating.toString()
+        binding.notes.text = movie.notes
         binding.executePendingBindings()
     }
 }
