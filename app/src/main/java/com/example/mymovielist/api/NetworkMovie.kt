@@ -18,14 +18,14 @@ data class NetworkMovie(
     val rating: Double
 ) : Parcelable
 
-fun NetworkMovie.toDatabaseMovie(): DatabaseMovie {
+fun NetworkMovie.toDatabaseMovie(myRating: Double, notes: String?): DatabaseMovie {
     return DatabaseMovie(
         id = id,
         title = title,
         posterPath = posterPath,
         overview = overview,
         releaseDate = releaseDate,
-        myRating = null,
-        notes = null
+        myRating = myRating,
+        notes = notes
     )
 }

@@ -30,4 +30,13 @@
         android:name="com.example.mymovielist.myMovies.MyMoviesFragment"
         tools:layout="@layout/fragment_my_movies" />
 
+    <fragment
+        android:id="@+id/add_movie_fragment"
+        android:name="com.example.mymovielist.addMovie.AddMovieFragment"
+        tools:layout="@layout/fragment_add_movie">
+        <argument
+            android:name="movie"
+            app:argType="com.example.mymovielist.api.NetworkMovie" />
+    </fragment>
+
 </navigation>

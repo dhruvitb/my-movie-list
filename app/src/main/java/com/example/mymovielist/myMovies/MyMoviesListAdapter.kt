@@ -34,7 +34,7 @@ class ViewHolder(private val binding: MyMoviesListItemBinding) :
                 .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                 .into(moviePoster)
             movieTitle.text = movie.title
-            myRating.text = movie.myRating?.toString()
+            myRating.text = "${movie.myRating.toInt()}/10"
             notes.text = movie.notes
             executePendingBindings()
         }

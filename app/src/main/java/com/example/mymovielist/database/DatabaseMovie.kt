@@ -11,6 +11,6 @@ class DatabaseMovie(
     val posterPath: String?,
     val overview: String?,
     val releaseDate: String?,
-    val myRating: Double?,
+    val myRating: Double,
     val notes: String?
 )
