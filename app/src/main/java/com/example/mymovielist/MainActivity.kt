@@ -3,7 +3,7 @@ package com.example.mymovielist
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -15,12 +15,8 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-
         bottomNavigationView.apply {
-            selectedItemId = R.id.top_movies_fragment
-            setOnNavigationItemSelectedListener {
-                NavigationUI.onNavDestinationSelected(it, navController)
-            }
+            setupWithNavController(navController)
             setOnNavigationItemReselectedListener { }
         }
     }

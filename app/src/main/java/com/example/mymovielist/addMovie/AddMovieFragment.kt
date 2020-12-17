@@ -39,7 +39,6 @@ class AddMovieFragment : Fragment() {
                     binding.notes.text.toString()
                 )
                 binding.notes.clearFocus()
-                // TODO more stuff with bottom nav
                 findNavController().navigate(R.id.my_movies_fragment)
             }
         }
