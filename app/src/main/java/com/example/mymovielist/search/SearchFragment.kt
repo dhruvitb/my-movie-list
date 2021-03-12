@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mymovielist.MovieListAdapter
+import com.example.mymovielist.MovieListType
 import com.example.mymovielist.databinding.FragmentSearchBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,7 +28,7 @@ class SearchFragment : Fragment() {
         val binding = FragmentSearchBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
-        val listAdapter = MovieListAdapter()
+        val listAdapter = MovieListAdapter(MovieListType.SEARCH)
         binding.searchResultsList.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = listAdapter
